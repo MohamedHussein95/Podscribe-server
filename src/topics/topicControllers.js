@@ -29,13 +29,10 @@ const get_user_topics = asyncHandler(async (req, res) => {
 	const userData = userSnapshot.val();
 
 	const userTopics = userData?.topics || [];
-	console.log(userTopics);
 
 	if (!userData) {
-		return; // res.status(404).json({ error: 'User data not found' });
+		return;
 	}
-
-	console.log(topics);
 
 	if (userTopics.length <= 0) {
 		const filteredTopics = Object.entries(topics).map(([key, val]) => ({
@@ -62,8 +59,6 @@ const get_all_topics = asyncHandler(async (req, res) => {
 	const topics = snapshot.val();
 
 	if (!topics) return;
-
-	console.log(topics);
 
 	const allTopics = Object.entries(topics).map(([key, val]) => ({
 		id: key,
